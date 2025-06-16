@@ -4,13 +4,20 @@ wb = load_workbook('sagatave_eksamenam.xlsx')
 ws = wb['Lapa_0']
 max_row = ws.max_row
 
+total_sum = 0
 count = 0
 
 for row in range(2, max_row + 1):
-    addr = ws['D' + str(row)].value
-    city = ws['E' + str(row)].value
+    product = ws['I' + str(row)].value
+    price = ws['K' + str(row)].value
 
-    if isinstance(addr, str) and 'Adulienas iela' in addr and city in ['Valmiera', 'Saulkrasti']:
+    if isinstance(product, str) and 'LaserJet' in product and isinstance(price, (int, float)):
+        total_sum += price
         count += 1
 
-print(count)
+if count > 0:
+    average = int(total_sum / count)
+else:
+    average = 0
+
+print(average)
