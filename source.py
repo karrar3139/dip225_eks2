@@ -7,10 +7,10 @@ max_row = ws.max_row
 count = 0
 
 for row in range(2, max_row + 1):
-    priority = ws['H' + str(row)].value
-    delivery_date = ws['J' + str(row)].value
+    addr = ws['D' + str(row)].value
+    city = ws['E' + str(row)].value
 
-    if priority == 'High' and hasattr(delivery_date, 'year') and delivery_date.year == 2015:
+    if isinstance(addr, str) and 'Adulienas iela' in addr and city in ['Valmiera', 'Saulkrasti']:
         count += 1
 
 print(count)
